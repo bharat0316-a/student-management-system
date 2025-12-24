@@ -8,7 +8,7 @@
 
 ## ✨ Live Demo
 
-🔗 **[Try it here](https://student-management-system.vercel)**
+🔗 **[Try it here]([https://student-management-system.vercel](https://student-management-system-six-ashen.vercel.app/))**
 
 ## 🌟 Features
 
@@ -349,8 +349,9 @@ Need help? Here are your options:
 
 [Report Bug](https://github.com/bharat0316-a/student-management-system/issues) · 
 [Request Feature](https://github.com/bharat0316-a/student-management-system/issues) · 
-[View Demo](https://student-management-system.vercel)
+[View Demo]([https://student-management-system.vercel](https://student-management-system-six-ashen.vercel.app/))
 
 </div>
 
 ---
+
