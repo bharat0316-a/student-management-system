@@ -354,26 +354,3 @@ Need help? Here are your options:
 </div>
 
 ---
-
-## 🎯 Quick Commands Reference
-
-```bash
-# Initialize with sample data (if empty)
-localStorage.clear()  # Then refresh page
-
-# Export all data
-Click Export button in top navigation
-
-# Import data
-Click Import button and select JSON file
-
-# Switch themes
-Click moon/sun icon in top right
-
-# Reset filters
-Click "Clear Filters" button
-```
-
----
-
-**Note**: This is a client-side application. All data is stored locally in your browser. For production use with multiple users, consider adding a backend server.
