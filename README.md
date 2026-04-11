@@ -1082,4 +1082,3 @@ If you find this Student Management System helpful, please consider:
 *Empowering educators with modern, intuitive tools for student success!* 📚✨
 
 </div>
-
