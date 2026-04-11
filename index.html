@@ -2,169 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management System</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="enhanced-script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <i class="fas fa-user-graduate"></i>
-                <h1>Student Manager</h1>
+                <div class="brand-icon"><i class="fas fa-graduation-cap"></i></div>
+                <span class="brand-text">EduManager</span>
             </div>
             <div class="nav-links">
                 <button class="nav-btn active" data-view="dashboard">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                    <i class="fas fa-th-large"></i><span>Dashboard</span>
                 </button>
                 <button class="nav-btn" data-view="students">
-                    <i class="fas fa-users"></i> Students
+                    <i class="fas fa-user-graduate"></i><span>Students</span>
                 </button>
                 <button class="nav-btn" data-view="courses">
-                    <i class="fas fa-book"></i> Courses
+                    <i class="fas fa-book-open"></i><span>Courses</span>
                 </button>
                 <button class="nav-btn" data-view="attendance">
-                    <i class="fas fa-calendar-check"></i> Attendance
+                    <i class="fas fa-calendar-check"></i><span>Attendance</span>
                 </button>
                 <button class="nav-btn" data-view="grades">
-                    <i class="fas fa-chart-line"></i> Grades
+                    <i class="fas fa-chart-bar"></i><span>Grades</span>
                 </button>
                 <button class="nav-btn" data-view="reports">
                     <i class="fas fa-file-alt"></i> Reports
                 </button>
             </div>
             <div class="nav-actions">
-                <button id="exportBtn" class="btn-secondary" title="Export Data">
+                <button id="exportBtn" class="btn-icon" title="Export Data">
                     <i class="fas fa-download"></i>
                 </button>
-                <button id="importBtn" class="btn-secondary" title="Import Data">
+                <button id="importBtn" class="btn-icon" title="Import Data">
                     <i class="fas fa-upload"></i>
                 </button>
                 <input type="file" id="importFile" accept=".json" hidden>
-                <div class="theme-toggle">
-                    <button id="themeToggle">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
+                <button id="themeToggle" class="btn-icon" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                <button class="hamburger-btn btn-icon" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
             </div>
+        </div>
+        <!-- Mobile Nav -->
+        <div class="mobile-nav" id="mobileNav">
+            <button class="nav-btn-mobile active" data-view="dashboard"><i class="fas fa-th-large"></i><span>Dashboard</span></button>
+            <button class="nav-btn-mobile" data-view="students"><i class="fas fa-user-graduate"></i><span>Students</span></button>
+            <button class="nav-btn-mobile" data-view="courses"><i class="fas fa-book-open"></i><span>Courses</span></button>
+            <button class="nav-btn-mobile" data-view="attendance"><i class="fas fa-calendar-check"></i><span>Attendance</span></button>
+            <button class="nav-btn-mobile" data-view="grades"><i class="fas fa-chart-bar"></i><span>Grades</span></button>
+            <button class="nav-btn-mobile" data-view="reports"><i class="fas fa-file-alt"></i> Reports</button>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
+
         <!-- Dashboard View -->
         <div id="dashboardView" class="view active">
-            <div class="header">
-                <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h2 class="page-title">Dashboard</h2>
+                    <p class="page-subtitle">Welcome back — here's what's happening today</p>
+                </div>
                 <div class="header-actions">
-                    <button id="addStudentBtn" class="btn-primary">
-                        <i class="fas fa-user-plus"></i> Add Student
-                    </button>
-                    <button id="addCourseBtn" class="btn-primary">
-                        <i class="fas fa-book-medical"></i> Add Course
-                    </button>
+                    <button id="addStudentBtn" class="btn-primary"><i class="fas fa-user-plus"></i><span>Add Student</span></button>
+                    <button id="addCourseBtn" class="btn-secondary"><i class="fas fa-plus"></i><span>Add Course</span></button>
                 </div>
             </div>
 
-            <!-- Stats Cards -->
             <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: #3b82f6;">
-                        <i class="fas fa-users"></i>
-                    </div>
+                <div class="stat-card" data-color="indigo">
+                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
                     <div class="stat-info">
-                        <h3 id="totalStudents">0</h3>
-                        <p>Total Students</p>
+                        <span class="stat-label">Total Students</span>
+                        <h3 id="totalStudents" class="stat-value">0</h3>
                     </div>
-                    <div class="stat-trend">
-                        <i class="fas fa-arrow-up text-success"></i>
-                        <span>This Month</span>
+                    <div class="stat-trend" id="studentTrend"></div>
+                </div>
+                <div class="stat-card" data-color="violet">
+                    <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Active Courses</span>
+                        <h3 id="totalCourses" class="stat-value">0</h3>
                     </div>
                 </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: #10b981;">
-                        <i class="fas fa-book"></i>
-                    </div>
+                <div class="stat-card" data-color="sky">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
                     <div class="stat-info">
-                        <h3 id="totalCourses">0</h3>
-                        <p>Total Courses</p>
-                    </div>
-                    <div class="stat-trend">
-                        <i class="fas fa-book-open"></i>
-                        <span>Active</span>
+                        <span class="stat-label">Attendance Rate</span>
+                        <h3 id="attendanceRate" class="stat-value">—</h3>
                     </div>
                 </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: #f59e0b;">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
+                <div class="stat-card" data-color="emerald">
+                    <div class="stat-icon"><i class="fas fa-chart-bar"></i></div>
                     <div class="stat-info">
-                        <h3 id="attendanceRate">0%</h3>
-                        <p>Attendance Rate</p>
-                    </div>
-                    <div class="stat-trend">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Today</span>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: #8b5cf6;">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="avgGrade">0.0</h3>
-                        <p>Average Grade</p>
-                    </div>
-                    <div class="stat-trend">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>GPA</span>
+                        <span class="stat-label">Average Grade</span>
+                        <h3 id="avgGrade" class="stat-value">—</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Recent Activity & Top Students -->
             <div class="dashboard-grid">
                 <div class="card">
                     <div class="card-header">
-                        <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                        <h3><i class="fas fa-clock-rotate-left"></i> Recent Activity</h3>
                     </div>
                     <div class="card-body">
                         <div class="activity-list" id="recentActivity">
-                            <!-- Activities will be loaded here -->
+                            <div class="empty-state"><i class="fas fa-clock-rotate-left"></i><p>No recent activities</p></div>
                         </div>
                     </div>
                 </div>
-
                 <div class="card">
                     <div class="card-header">
                         <h3><i class="fas fa-trophy"></i> Top Students</h3>
                     </div>
                     <div class="card-body">
                         <div class="top-students" id="topStudents">
-                            <!-- Top students will be loaded here -->
+                            <div class="empty-state"><i class="fas fa-trophy"></i><p>No grades recorded yet</p></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Upcoming Events -->
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-calendar-day"></i> Upcoming Events</h3>
-                    <button id="addEventBtn" class="btn-secondary btn-sm">
-                        <i class="fas fa-plus"></i> Add Event
-                    </button>
+                    <h3><i class="fas fa-calendar-days"></i> Upcoming Events</h3>
+                    <button id="addEventBtn" class="btn-secondary btn-sm"><i class="fas fa-plus"></i> Add Event</button>
                 </div>
                 <div class="card-body">
                     <div class="events-list" id="upcomingEvents">
-                        <!-- Events will be loaded here -->
+                        <div class="empty-state"><i class="fas fa-calendar-days"></i><p>No upcoming events</p></div>
                     </div>
                 </div>
             </div>
@@ -172,53 +145,41 @@
 
         <!-- Students View -->
         <div id="studentsView" class="view">
-            <div class="header">
-                <h2><i class="fas fa-users"></i> Students Management</h2>
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h2 class="page-title">Students</h2>
+                    <p class="page-subtitle" id="studentCount">Manage all enrolled students</p>
+                </div>
                 <div class="header-actions">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="studentSearch" placeholder="Search students...">
+                        <input type="text" id="studentSearch" placeholder="Search students…">
                     </div>
-                    <button id="newStudentBtn" class="btn-primary">
-                        <i class="fas fa-user-plus"></i> New Student
-                    </button>
+                    <button id="newStudentBtn" class="btn-primary"><i class="fas fa-user-plus"></i><span>New Student</span></button>
                 </div>
             </div>
-
-            <!-- Filters -->
             <div class="filters">
-                <select id="studentFilterClass">
+                <select id="studentFilterClass" class="filter-select">
                     <option value="">All Classes</option>
                 </select>
-                <select id="studentFilterStatus">
+                <select id="studentFilterStatus" class="filter-select">
                     <option value="">All Status</option>
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                 </select>
-                <button id="clearFilters" class="btn-secondary">
-                    <i class="fas fa-filter-circle-xmark"></i> Clear Filters
-                </button>
+                <button id="clearFilters" class="btn-ghost"><i class="fas fa-xmark"></i> Clear</button>
             </div>
-
-            <!-- Students Table -->
             <div class="card">
-                <div class="card-body">
+                <div class="card-body no-pad">
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Class</th>
-                                    <th>Status</th>
-                                    <th>Enrollment Date</th>
-                                    <th>Actions</th>
+                                    <th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Class</th><th>Status</th><th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="studentsTable">
-                                <!-- Students will be loaded here -->
+                                <tr><td colspan="7"><div class="empty-state"><i class="fas fa-user-graduate"></i><h3>No Students Found</h3><p>Add your first student to get started</p></div></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -228,51 +189,42 @@
 
         <!-- Courses View -->
         <div id="coursesView" class="view">
-            <div class="header">
-                <h2><i class="fas fa-book"></i> Courses Management</h2>
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h2 class="page-title">Courses</h2>
+                    <p class="page-subtitle">Manage course catalog and schedules</p>
+                </div>
                 <div class="header-actions">
-                    <button id="newCourseBtn" class="btn-primary">
-                        <i class="fas fa-book-medical"></i> New Course
-                    </button>
+                    <button id="newCourseBtn" class="btn-primary"><i class="fas fa-plus"></i><span>New Course</span></button>
                 </div>
             </div>
-
-            <!-- Courses Grid -->
             <div class="courses-grid" id="coursesGrid">
-                <!-- Courses will be loaded here -->
+                <div class="empty-state"><i class="fas fa-book-open"></i><h3>No Courses Found</h3><p>Add your first course to get started</p></div>
             </div>
         </div>
 
         <!-- Attendance View -->
         <div id="attendanceView" class="view">
-            <div class="header">
-                <h2><i class="fas fa-calendar-check"></i> Attendance Management</h2>
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h2 class="page-title">Attendance</h2>
+                    <p class="page-subtitle">Track daily student attendance</p>
+                </div>
                 <div class="header-actions">
-                    <input type="date" id="attendanceDate" class="date-picker">
-                    <button id="markAttendanceBtn" class="btn-primary">
-                        <i class="fas fa-check-circle"></i> Mark Attendance
-                    </button>
+                    <input type="date" id="attendanceDate" class="input-field">
+                    <button id="markAttendanceBtn" class="btn-primary"><i class="fas fa-circle-check"></i><span>Mark Attendance</span></button>
                 </div>
             </div>
-
-            <!-- Attendance Table -->
+            <div class="attendance-summary" id="attendanceSummary"></div>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body no-pad">
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
-                                <tr>
-                                    <th>Student ID</th>
-                                    <th>Name</th>
-                                    <th>Class</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                    <th>Remarks</th>
-                                    <th>Actions</th>
-                                </tr>
+                                <tr><th>Student ID</th><th>Name</th><th>Class</th><th>Status</th><th>Date</th><th>Remarks</th><th>Actions</th></tr>
                             </thead>
                             <tbody id="attendanceTable">
-                                <!-- Attendance records will be loaded here -->
+                                <tr><td colspan="7"><div class="empty-state"><i class="fas fa-calendar-check"></i><h3>No Attendance Records</h3><p>Mark attendance to get started</p></div></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -282,47 +234,31 @@
 
         <!-- Grades View -->
         <div id="gradesView" class="view">
-            <div class="header">
-                <h2><i class="fas fa-chart-line"></i> Grades Management</h2>
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h2 class="page-title">Grades</h2>
+                    <p class="page-subtitle">Record and manage student grades</p>
+                </div>
                 <div class="header-actions">
-                    <select id="gradeCourseFilter">
-                        <option value="">All Courses</option>
-                    </select>
-                    <button id="addGradeBtn" class="btn-primary">
-                        <i class="fas fa-plus-circle"></i> Add Grade
-                    </button>
-                </div>
-            </div>
-
-            <!-- Grades Chart -->
-            <div class="card">
-                <div class="card-header">
-                    <h3>Grade Distribution</h3>
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="gradesChart"></canvas>
+                    <div class="select-wrapper">
+                        <i class="fas fa-book-open select-icon"></i>
+                        <select id="gradeCourseFilter" class="input-field with-icon">
+                            <option value="">All Courses</option>
+                        </select>
                     </div>
+                    <button id="addGradeBtn" class="btn-primary"><i class="fas fa-plus-circle"></i><span>Add Grade</span></button>
                 </div>
             </div>
-
-            <!-- Grades Table -->
+            <div class="grades-summary" id="gradesSummary"></div>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body no-pad">
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Course</th>
-                                    <th>Grade</th>
-                                    <th>Percentage</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
+                                <tr><th>Student</th><th>Course</th><th>Grade</th><th>Score</th><th>Date</th><th>Remarks</th><th>Actions</th></tr>
                             </thead>
                             <tbody id="gradesTable">
-                                <!-- Grades will be loaded here -->
+                                <tr><td colspan="7"><div class="empty-state"><i class="fas fa-chart-bar"></i><h3>No Grades Recorded</h3><p>Add your first grade to get started</p></div></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -332,202 +268,219 @@
 
         <!-- Reports View -->
         <div id="reportsView" class="view">
-            <div class="header">
-                <h2><i class="fas fa-file-alt"></i> Reports & Analytics</h2>
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h2 class="page-title">Reports</h2>
+                    <p class="page-subtitle">Analytics and data insights</p>
+                </div>
                 <div class="header-actions">
-                    <select id="reportType">
-                        <option value="attendance">Attendance Report</option>
-                        <option value="grades">Grade Report</option>
-                        <option value="students">Student Report</option>
-                        <option value="courses">Course Report</option>
-                    </select>
-                    <button id="generateReportBtn" class="btn-primary">
-                        <i class="fas fa-file-export"></i> Generate Report
-                    </button>
-                    <button id="printReportBtn" class="btn-secondary">
-                        <i class="fas fa-print"></i> Print
-                    </button>
+                    <div class="select-wrapper">
+                        <i class="fas fa-file-chart-column select-icon"></i>
+                        <select id="reportType" class="input-field with-icon">
+                            <option value="attendance">Attendance Report</option>
+                            <option value="grades">Grade Report</option>
+                            <option value="students">Student Report</option>
+                            <option value="courses">Course Report</option>
+                        </select>
+                    </div>
+                    <button id="generateReportBtn" class="btn-primary"><i class="fas fa-wand-magic-sparkles"></i> Generate</button>
+                    <button id="printReportBtn" class="btn-secondary"><i class="fas fa-print"></i> Print</button>
                 </div>
             </div>
-
-            <!-- Report Content -->
             <div class="card">
                 <div class="card-body">
                     <div id="reportContent">
-                        <!-- Report will be loaded here -->
+                        <div class="empty-state"><i class="fas fa-file-chart-column"></i><h3>Generate a Report</h3><p>Select a report type and click Generate</p></div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Modals -->
+    <!-- ============ MODALS ============ -->
+
     <!-- Student Modal -->
     <div id="studentModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-lg">
             <div class="modal-header">
-                <h3 id="studentModalTitle">Add New Student</h3>
-                <button class="modal-close">&times;</button>
+                <div class="modal-title-group">
+                    <div class="modal-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3 id="studentModalTitle">Add New Student</h3>
+                </div>
+                <button class="modal-close" aria-label="Close"><i class="fas fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <form id="studentForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="studentId">Student ID *</label>
-                            <input type="text" id="studentId" required>
+                <form id="studentForm" novalidate>
+                    <input type="hidden" id="editStudentId">
+                    <div class="form-section">
+                        <h4 class="form-section-title">Personal Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="studentId">Student ID <span class="required">*</span></label>
+                                <input type="text" id="studentId" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input type="text" id="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input type="text" id="lastName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="firstName">First Name *</label>
-                            <input type="text" id="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name *</label>
-                            <input type="text" id="lastName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="dob">Date of Birth</label>
-                            <input type="date" id="dob" class="date-picker">
-                        </div>
-                        <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <select id="gender">
-                                <option value="">Select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="class">Class *</label>
-                            <input type="text" id="class" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="section">Section</label>
-                            <input type="text" id="section">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea id="address" rows="2"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="enrollmentDate">Enrollment Date *</label>
-                            <input type="date" id="enrollmentDate" class="date-picker" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <select id="status">
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="notes">Notes</label>
-                            <textarea id="notes" rows="3"></textarea>
+                    </div>
+                    <div class="form-section">
+                        <h4 class="form-section-title">Academic Details</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="class">Class <span class="required">*</span></label>
+                                <input type="text" id="class" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="section">Section</label>
+                                <input type="text" id="section" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="enrollmentDate">Enrollment Date <span class="required">*</span></label>
+                                <input type="date" id="enrollmentDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select id="status" class="form-control">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="address">Address</label>
+                                <textarea id="address" class="form-control" rows="2"></textarea>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary modal-close">Cancel</button>
-                <button type="submit" form="studentForm" class="btn-primary">Save Student</button>
+                <button type="button" class="btn-cancel modal-close"><i class="fas fa-xmark"></i> Cancel</button>
+                <button type="submit" form="studentForm" class="btn-primary"><i class="fas fa-check"></i> Save Student</button>
             </div>
         </div>
     </div>
 
     <!-- Course Modal -->
     <div id="courseModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-lg">
             <div class="modal-header">
-                <h3 id="courseModalTitle">Add New Course</h3>
-                <button class="modal-close">&times;</button>
+                <div class="modal-title-group">
+                    <div class="modal-icon"><i class="fas fa-book-open"></i></div>
+                    <h3 id="courseModalTitle">Add New Course</h3>
+                </div>
+                <button class="modal-close" aria-label="Close"><i class="fas fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <form id="courseForm">
+                <form id="courseForm" novalidate>
+                    <input type="hidden" id="editCourseId">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="courseCode">Course Code *</label>
-                            <input type="text" id="courseCode" required>
+                            <label for="courseCode">Course Code <span class="required">*</span></label>
+                            <input type="text" id="courseCode" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="courseName">Course Name *</label>
-                            <input type="text" id="courseName" required>
+                            <label for="courseName">Course Name <span class="required">*</span></label>
+                            <input type="text" id="courseName" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="courseInstructor">Instructor</label>
-                            <input type="text" id="courseInstructor">
+                            <input type="text" id="courseInstructor" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="courseCredits">Credits</label>
-                            <input type="number" id="courseCredits" min="1" max="10" value="3">
+                            <input type="number" id="courseCredits" class="form-control" min="1" max="10" value="3">
                         </div>
                         <div class="form-group">
                             <label for="courseDuration">Duration (weeks)</label>
-                            <input type="number" id="courseDuration" min="1" max="52" value="16">
+                            <input type="number" id="courseDuration" class="form-control" min="1" max="52" value="16">
                         </div>
                         <div class="form-group">
                             <label for="courseSchedule">Schedule</label>
-                            <input type="text" id="courseSchedule" placeholder="Mon, Wed, Fri 10:00-11:00">
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="courseDescription">Description</label>
-                            <textarea id="courseDescription" rows="3"></textarea>
+                            <input type="text" id="courseSchedule" class="form-control" placeholder="Mon, Wed 10:00–11:00">
                         </div>
                         <div class="form-group">
                             <label for="courseStartDate">Start Date</label>
-                            <input type="date" id="courseStartDate" class="date-picker">
+                            <input type="date" id="courseStartDate" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="courseEndDate">End Date</label>
-                            <input type="date" id="courseEndDate" class="date-picker">
+                            <input type="date" id="courseEndDate" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="courseStatus">Status</label>
-                            <select id="courseStatus">
+                            <select id="courseStatus" class="form-control">
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
                                 <option value="completed">Completed</option>
                             </select>
                         </div>
+                        <div class="form-group full-width">
+                            <label for="courseDescription">Description</label>
+                            <textarea id="courseDescription" class="form-control" rows="3"></textarea>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary modal-close">Cancel</button>
-                <button type="submit" form="courseForm" class="btn-primary">Save Course</button>
+                <button type="button" class="btn-cancel modal-close"><i class="fas fa-xmark"></i> Cancel</button>
+                <button type="submit" form="courseForm" class="btn-primary"><i class="fas fa-check"></i> Save Course</button>
             </div>
         </div>
     </div>
 
     <!-- Attendance Modal -->
     <div id="attendanceModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-sm">
             <div class="modal-header">
-                <h3>Mark Attendance</h3>
-                <button class="modal-close">&times;</button>
+                <div class="modal-title-group">
+                    <div class="modal-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>Mark Attendance</h3>
+                </div>
+                <button class="modal-close" aria-label="Close"><i class="fas fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <form id="attendanceForm">
+                <form id="attendanceForm" novalidate>
+                    <input type="hidden" id="editAttendanceId">
                     <div class="form-group">
-                        <label for="attendanceStudent">Student *</label>
-                        <select id="attendanceStudent" required>
+                        <label for="attendanceStudent">Student <span class="required">*</span></label>
+                        <select id="attendanceStudent" class="form-control" required>
                             <option value="">Select Student</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="attendanceDateModal">Date *</label>
-                        <input type="date" id="attendanceDateModal" class="date-picker" required>
+                        <label for="attendanceDateModal">Date <span class="required">*</span></label>
+                        <input type="date" id="attendanceDateModal" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="attendanceStatus">Status *</label>
-                        <select id="attendanceStatus" required>
+                        <label for="attendanceStatus">Status <span class="required">*</span></label>
+                        <select id="attendanceStatus" class="form-control" required>
                             <option value="present">Present</option>
                             <option value="absent">Absent</option>
                             <option value="late">Late</option>
@@ -536,83 +489,90 @@
                     </div>
                     <div class="form-group">
                         <label for="attendanceRemarks">Remarks</label>
-                        <textarea id="attendanceRemarks" rows="2"></textarea>
+                        <textarea id="attendanceRemarks" class="form-control" rows="2"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary modal-close">Cancel</button>
-                <button type="submit" form="attendanceForm" class="btn-primary">Save Attendance</button>
+                <button type="button" class="btn-cancel modal-close"><i class="fas fa-xmark"></i> Cancel</button>
+                <button type="submit" form="attendanceForm" class="btn-primary"><i class="fas fa-check"></i> Save</button>
             </div>
         </div>
     </div>
 
     <!-- Grade Modal -->
     <div id="gradeModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-sm">
             <div class="modal-header">
-                <h3>Add Grade</h3>
-                <button class="modal-close">&times;</button>
+                <div class="modal-title-group">
+                    <div class="modal-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3 id="gradeModalTitle">Add Grade</h3>
+                </div>
+                <button class="modal-close" aria-label="Close"><i class="fas fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <form id="gradeForm">
+                <form id="gradeForm" novalidate>
+                    <input type="hidden" id="editGradeId">
                     <div class="form-group">
-                        <label for="gradeStudent">Student *</label>
-                        <select id="gradeStudent" required>
+                        <label for="gradeStudent">Student <span class="required">*</span></label>
+                        <select id="gradeStudent" class="form-control" required>
                             <option value="">Select Student</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="gradeCourse">Course *</label>
-                        <select id="gradeCourse" required>
+                        <label for="gradeCourse">Course <span class="required">*</span></label>
+                        <select id="gradeCourse" class="form-control" required>
                             <option value="">Select Course</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="gradeScore">Score (0-100) *</label>
-                        <input type="number" id="gradeScore" min="0" max="100" step="0.1" required>
+                        <label for="gradeScore">Score (0–100) <span class="required">*</span></label>
+                        <input type="number" id="gradeScore" class="form-control" min="0" max="100" step="0.1" required>
                     </div>
                     <div class="form-group">
-                        <label for="gradeDate">Date *</label>
-                        <input type="date" id="gradeDate" class="date-picker" required>
+                        <label for="gradeDate">Date <span class="required">*</span></label>
+                        <input type="date" id="gradeDate" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="gradeRemarks">Remarks</label>
-                        <textarea id="gradeRemarks" rows="2"></textarea>
+                        <textarea id="gradeRemarks" class="form-control" rows="2"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary modal-close">Cancel</button>
-                <button type="submit" form="gradeForm" class="btn-primary">Save Grade</button>
+                <button type="button" class="btn-cancel modal-close"><i class="fas fa-xmark"></i> Cancel</button>
+                <button type="submit" form="gradeForm" class="btn-primary"><i class="fas fa-check"></i> Save Grade</button>
             </div>
         </div>
     </div>
 
     <!-- Event Modal -->
     <div id="eventModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-sm">
             <div class="modal-header">
-                <h3>Add Event</h3>
-                <button class="modal-close">&times;</button>
+                <div class="modal-title-group">
+                    <div class="modal-icon"><i class="fas fa-calendar-days"></i></div>
+                    <h3>Add Event</h3>
+                </div>
+                <button class="modal-close" aria-label="Close"><i class="fas fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <form id="eventForm">
+                <form id="eventForm" novalidate>
                     <div class="form-group">
-                        <label for="eventTitle">Event Title *</label>
-                        <input type="text" id="eventTitle" required>
+                        <label for="eventTitle">Event Title <span class="required">*</span></label>
+                        <input type="text" id="eventTitle" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="eventDate">Date *</label>
-                        <input type="date" id="eventDate" class="date-picker" required>
+                        <label for="eventDate">Date <span class="required">*</span></label>
+                        <input type="date" id="eventDate" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="eventTime">Time</label>
-                        <input type="time" id="eventTime">
+                        <input type="time" id="eventTime" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="eventType">Type</label>
-                        <select id="eventType">
+                        <select id="eventType" class="form-control">
                             <option value="exam">Exam</option>
                             <option value="holiday">Holiday</option>
                             <option value="meeting">Meeting</option>
@@ -620,46 +580,48 @@
                             <option value="other">Other</option>
                         </select>
                     </div>
-                    <div class="form-group full-width">
+                    <div class="form-group">
                         <label for="eventDescription">Description</label>
-                        <textarea id="eventDescription" rows="3"></textarea>
+                        <textarea id="eventDescription" class="form-control" rows="3"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary modal-close">Cancel</button>
-                <button type="submit" form="eventForm" class="btn-primary">Save Event</button>
+                <button type="button" class="btn-cancel modal-close"><i class="fas fa-xmark"></i> Cancel</button>
+                <button type="submit" form="eventForm" class="btn-primary"><i class="fas fa-check"></i> Save Event</button>
             </div>
         </div>
     </div>
 
-    <!-- Confirmation Modal -->
+    <!-- Confirm Modal -->
     <div id="confirmModal" class="modal">
-        <div class="modal-content small">
+        <div class="modal-content modal-xs">
             <div class="modal-header">
-                <h3>Confirm Action</h3>
-                <button class="modal-close">&times;</button>
+                <div class="modal-title-group">
+                    <div class="modal-icon danger"><i class="fas fa-triangle-exclamation"></i></div>
+                    <h3>Confirm Delete</h3>
+                </div>
+                <button class="modal-close" aria-label="Close"><i class="fas fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <p id="confirmMessage">Are you sure you want to perform this action?</p>
+                <p id="confirmMessage" class="confirm-message">Are you sure you want to perform this action?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary modal-close">Cancel</button>
-                <button type="button" id="confirmAction" class="btn-danger">Confirm</button>
+                <button type="button" class="btn-cancel modal-close"><i class="fas fa-xmark"></i> Cancel</button>
+                <button type="button" id="confirmAction" class="btn-danger"><i class="fas fa-trash"></i> Delete</button>
             </div>
         </div>
     </div>
 
-    <!-- Notification Toast -->
-    <div id="toast" class="toast">
+    <!-- Toast -->
+    <div id="toast" class="toast" role="alert" aria-live="polite">
         <div class="toast-content">
             <i class="toast-icon"></i>
             <div class="toast-message"></div>
         </div>
+        <button class="toast-close" onclick="document.getElementById('toast').classList.remove('show')"><i class="fas fa-xmark"></i></button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
