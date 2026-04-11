@@ -14,10 +14,10 @@
   [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge)](https://github.com/bharat-poojari/student-management-system/pulls)
   
   <p align="center">
+    <a href="#-overview"><strong>Overview</strong></a> •
     <a href="#-live-demo"><strong>Live Demo</strong></a> •
     <a href="#-features"><strong>Features</strong></a> •
     <a href="#-quick-start"><strong>Quick Start</strong></a> •
-    <a href="#-screenshots"><strong>Screenshots</strong></a> •
     <a href="#-technology-stack"><strong>Tech Stack</strong></a> •
     <a href="#-usage-guide"><strong>Usage</strong></a> •
     <a href="#-contributing"><strong>Contributing</strong></a>
@@ -1082,3 +1082,4 @@ If you find this Student Management System helpful, please consider:
 *Empowering educators with modern, intuitive tools for student success!* 📚✨
 
 </div>
+
