@@ -2,7 +2,7 @@
 
 <div align="center">
   
-  ![Student Management System](https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/assets/logo.png)
+  ![Student Management System](https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s7.png)
 
   ### 📚 Modern, Elegant & Fully Interactive Student Management Solution
 
