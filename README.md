@@ -27,13 +27,13 @@
 
 ## 📸 Screenshots
 <div style="white-space: nowrap; overflow-x: auto; padding: 10px 0;">
-  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/screenshots/s1.png" height="200" style="display:inline-block; margin-right:10px;">
-  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/screenshots/s2.png" height="200" style="display:inline-block; margin-right:10px;">
-  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/screenshots/s3.png" height="200" style="display:inline-block; margin-right:10px;">
-  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/screenshots/s4.png" height="200" style="display:inline-block; margin-right:10px;">
-  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/screenshots/s5.png" height="200" style="display:inline-block; margin-right:10px;">
-  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/screenshots/s6.png" height="200" style="display:inline-block; margin-right:10px;">
-  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/screenshots/s7.png" height="200" style="display:inline-block; margin-right:10px;">
+  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s1.png" height="200" style="display:inline-block; margin-right:10px;">
+  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s2.png" height="200" style="display:inline-block; margin-right:10px;">
+  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s3.png" height="200" style="display:inline-block; margin-right:10px;">
+  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s4.png" height="200" style="display:inline-block; margin-right:10px;">
+  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s5.png" height="200" style="display:inline-block; margin-right:10px;">
+  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s6.png" height="200" style="display:inline-block; margin-right:10px;">
+  <img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s7.png" height="200" style="display:inline-block; margin-right:10px;">
 </div>
 ---
 
@@ -210,16 +210,16 @@ const attendanceStatus = {
     <td><strong>👥 Student Management</strong></td>
   </tr>
   <tr>
-    <td><img src="https://via.placeholder.com/400x250/1e1e1e/ffffff?text=Dashboard+Preview" alt="Dashboard"/></td>
-    <td><img src="https://via.placeholder.com/400x250/1e1e1e/ffffff?text=Student+List" alt="Students"/></td>
+    <td><img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s1.png" alt="Dashboard"/></td>
+    <td><img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s2.png" alt="Students"/></td>
   </tr>
   <tr>
     <td><strong>📚 Course Cards</strong></td>
     <td><strong>📈 Grade Analytics</strong></td>
   </tr>
   <tr>
-    <td><img src="https://via.placeholder.com/400x250/1e1e1e/ffffff?text=Course+Management" alt="Courses"/></td>
-    <td><img src="https://via.placeholder.com/400x250/1e1e1e/ffffff?text=Grade+Charts" alt="Grades"/></td>
+    <td><img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s3.png" alt="Courses"/></td>
+    <td><img src="https://raw.githubusercontent.com/bharat-poojari/student-management-system/main/ss/s5.png" alt="Grades"/></td>
   </tr>
 </table>
 
